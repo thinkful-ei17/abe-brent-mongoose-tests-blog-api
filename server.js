@@ -18,6 +18,7 @@ app.get('/posts', (req, res) => {
   BlogPost
     .find()
     .then(posts => {
+      console.log('posts length!',posts.length);
       res.json(posts.map(post => post.serialize()));
     })
     .catch(err => {
@@ -142,6 +143,7 @@ function closeServer() {
     return new Promise((resolve, reject) => {
       console.log('Closing server');
       server.close(err => {
+        console.log(err);
         if (err) {
           return reject(err);
         }
